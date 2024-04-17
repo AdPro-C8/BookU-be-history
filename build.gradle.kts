@@ -30,7 +30,13 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.vintage:junit-vintage-engine")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.assertj:assertj-core")
 }
 
 tasks.withType<Test> {
