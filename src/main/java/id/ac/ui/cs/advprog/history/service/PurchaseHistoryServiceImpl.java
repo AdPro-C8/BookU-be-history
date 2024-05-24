@@ -1,42 +1,55 @@
 package id.ac.ui.cs.advprog.history.service;
-
+import id.ac.ui.cs.advprog.history.dto.PurchaseHistoryDTO;
 import id.ac.ui.cs.advprog.history.model.PurchaseHistory;
 import id.ac.ui.cs.advprog.history.model.PurchaseItem;
+import id.ac.ui.cs.advprog.history.repository.PurchaseHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 
-    // Nanti kalo pake repository
-    // @Autowired
-    // private PurchaseHistoryRepository purchaseHistoryRepository;
+    @Autowired
+    private PurchaseHistoryRepository purchaseHistoryRepository;
 
     @Override
-    public List<PurchaseHistory> findPurchasesByUserId(Long userId) {
-        return generateDummyData(userId);
+    public PurchaseHistory createPurchaseHistory(PurchaseHistoryDTO purchaseHistoryDTO) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UUID userId = UUID.fromString(userDetails.getUsername()); // Assuming username is user ID
+
+        List<PurchaseItem> purchaseItems = purchaseHistoryDTO.getBookIds().stream()
+                .map(bookId -> PurchaseItem.builder()
+                        // data dummy, ambil dari reyhan.
+                        // Tapi karena di fitur ini hanya menampilkan info singkat terkait buku
+
+                        .bookId(bookId)
+                        .bookTitle("Dummy Title") // This should be fetched from a book service or repository
+                        .bookImageUrl("Dummy Image URL") // This should be fetched from a book service or repository
+                        .price(100) // This should be fetched from a book service or repository
+                        .build())
+                .collect(Collectors.toList());
+
+        PurchaseHistory purchaseHistory = PurchaseHistory.builder()
+                .userId(userId)
+                .purchaseItems(purchaseItems)
+                .totalPrice(purchaseHistoryDTO.getTotalPrice())
+                .purchaseDate(new Date())
+                .build();
+
+        purchaseItems.forEach(item -> item.setPurchaseHistory(purchaseHistory));
+
+        return purchaseHistoryRepository.save(purchaseHistory);
     }
 
-    private List<PurchaseHistory> generateDummyData(Long userId) {
-        List<PurchaseHistory> purchases = new ArrayList<>();
-        List<PurchaseItem> items = new ArrayList<>();
-
-        items.add(new PurchaseItem(1L, "1984", "/images/1984.jpg", 15.0));
-        items.add(new PurchaseItem(2L, "To Kill a Mockingbird", "/images/tkam.jpg", 12.5));
-
-        PurchaseHistory purchase = new PurchaseHistory();
-        purchase.setId(1L);
-        purchase.setTotalCost(27.5);
-        purchase.setPurchaseDate(new Date());
-        purchase.setPurchaseItems(items);
-        purchase.setUserId(userId);
-
-        purchases.add(purchase);
-        return purchases;
+    @Override
+    public List<PurchaseHistory> getPurchaseHistoryByUser(UUID userId) {
+        return purchaseHistoryRepository.findByUserId(userId);
     }
 }
-

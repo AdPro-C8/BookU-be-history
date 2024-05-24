@@ -1,26 +1,33 @@
 package id.ac.ui.cs.advprog.history.model;
 
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
-import lombok.Getter;
+import java.util.UUID;
 
-
+@Entity
 @Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PurchaseHistory {
-    private final Long id;
-    private final Double totalCost;
-    private final Date purchaseDate;
-    private final List<PurchaseItem> purchaseItems;
-    private final Long userId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    // Konstruktor langsung tanpa Builder
-    public PurchaseHistory(Long id, Double totalCost, Date purchaseDate, List<PurchaseItem> purchaseItems, Long userId) {
-        this.id = id;
-        this.totalCost = totalCost;
-        this.purchaseDate = purchaseDate;
-        this.purchaseItems = purchaseItems;
-        this.userId = userId;
-    }
+    @Column(nullable = false)
+    private int totalPrice;
+
+    @Column(nullable = false)
+    private Date purchaseDate;
+
+    @OneToMany(mappedBy = "purchaseHistory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PurchaseItem> purchaseItems;
+
+    @Column(nullable = false)
+    private UUID userId;
 }
