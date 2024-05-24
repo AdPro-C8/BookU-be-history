@@ -15,5 +15,5 @@ public class PurchaseHistoryDTO {
     private Date purchaseDate;
     private int totalPrice;
 
-    // Constructors, Getters, Setters
+    // Constructors, Getters, Setters (Lombok will generate these)
 }
