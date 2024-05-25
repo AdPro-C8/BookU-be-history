@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history.config;
+package id.ac.ui.cs.advprog.bookubehistory.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

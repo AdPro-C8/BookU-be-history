@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history.service;
+package id.ac.ui.cs.advprog.bookubehistory.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history;
+package id.ac.ui.cs.advprog.bookubehistory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

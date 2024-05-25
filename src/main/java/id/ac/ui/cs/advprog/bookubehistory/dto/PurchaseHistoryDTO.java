@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history.dto;
+package id.ac.ui.cs.advprog.bookubehistory.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,5 @@ public class PurchaseHistoryDTO {
     private UUID userId;
     private Date purchaseDate;
     private int totalPrice;
-
     // Constructors, Getters, Setters (Lombok will generate these)
 }

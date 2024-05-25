@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history.model;
+package id.ac.ui.cs.advprog.bookubehistory.model;
 
 import java.util.Collection;
 import java.util.UUID;

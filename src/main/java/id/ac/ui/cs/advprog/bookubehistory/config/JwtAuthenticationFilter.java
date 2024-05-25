@@ -1,7 +1,7 @@
-package id.ac.ui.cs.advprog.history.config;
+package id.ac.ui.cs.advprog.bookubehistory.config;
 
-import id.ac.ui.cs.advprog.history.model.User;
-import id.ac.ui.cs.advprog.history.service.JwtService;
+import id.ac.ui.cs.advprog.bookubehistory.model.User;
+import id.ac.ui.cs.advprog.bookubehistory.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

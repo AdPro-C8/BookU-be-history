@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.history;
+package id.ac.ui.cs.advprog.bookubehistory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
