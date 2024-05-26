@@ -22,15 +22,14 @@ public class PurchaseHistoryController {
     @Autowired
     private PurchaseHistoryService purchaseHistoryService;
 
-
-    @GetMapping("/")
-    PurchaseHistory getUser(@AuthenticationPrincipal User user) {
-        String username = user.getUsername();
-        String password = user.getPassword();
-        String email = user.getEmail();
-        String role = user.getRole(); // ADMIN atau CUSTOME
-        return new PurchaseHistory();
-        }
+//    @GetMapping("/")
+//    PurchaseHistory getUser(@AuthenticationPrincipal User user) {
+//        String username = user.getUsername();
+//        String password = user.getPassword();
+//        String email = user.getEmail();
+//        String role = user.getRole(); // ADMIN atau CUSTOME
+//        return new PurchaseHistory();
+//        }
 
     @PostMapping("/createPurchaseHistory")
     public ResponseEntity<?> createPurchaseHistory(@RequestBody PurchaseHistoryDTO purchaseDTO) {
