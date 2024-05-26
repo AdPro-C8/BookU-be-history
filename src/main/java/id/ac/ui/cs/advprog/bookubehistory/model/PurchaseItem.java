@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Getter
 @Setter
@@ -29,6 +31,7 @@ public class PurchaseItem {
     @Column(nullable = false)
     private int price;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "purchase_history_id", nullable = false)
     private PurchaseHistory purchaseHistory;
