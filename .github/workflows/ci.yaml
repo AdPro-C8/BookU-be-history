@@ -46,7 +46,9 @@ jobs:
           PG_PASS: postgres
           PORT: 8004
           JWT_SECRET: IniAdalahSebuahSecretYangSangatAmatRahasiaSuiseinoGotokuArawaretaSutanoGensekiAidoruVtubernoHoshimachiSuiseidesuSuichanwaKYOUUMOKAWAIIIIIIPlisKaliIniBisaAsTAGAAAASHAJSAJSJHAJSDCJDJCHABisaDongPlisssDemiAllahYesusBuddhaBhagavvatGittaTriHitaKaranaSwastiastuNamoBudayaBroFrnggabisabisatfAKHIRNYAAABISAAAAOWKOKWOKWOKWOWKOWKOKokwoKWOKowkowKWOKWOkwoWKokwoKowkoKWOKowkOWKOkOWKOkwoKWOKokwoK
-          AUTH_HOST: http://127.0.0.1:8000
+          AUTH_HOST: http://localhost:8000
+          BOOKLIST_HOST: http://localhost:8003
+          HISTORY_HOST: http://localhost:8004
 
 
       - name: Store reports
