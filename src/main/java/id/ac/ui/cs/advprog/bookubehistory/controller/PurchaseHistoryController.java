@@ -34,7 +34,7 @@ public class PurchaseHistoryController {
     @PostMapping("/createPurchaseHistory")
     public ResponseEntity<?> createPurchaseHistory(@RequestBody PurchaseHistoryDTO purchaseDTO) {
         List<UUID> bookIds = purchaseDTO.getBookIds();
-        String url = "http://localhost:7000/book/get-multiple";
+        String url = "http://localhost:8003/book/get-multiple";
         RestTemplate restTemplate = new RestTemplate();
 
         Map<String, List<UUID>> body = Map.of("bookIds", bookIds);
