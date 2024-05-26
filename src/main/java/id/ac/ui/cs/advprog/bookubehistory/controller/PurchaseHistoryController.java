@@ -1,19 +1,16 @@
 package id.ac.ui.cs.advprog.bookubehistory.controller;
+
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDetailDTO;
-import id.ac.ui.cs.advprog.bookubehistory.model.Book;
-import id.ac.ui.cs.advprog.bookubehistory.model.PurchaseItem;
-import id.ac.ui.cs.advprog.bookubehistory.model.User;
-import org.springframework.http.*;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDTO;
+import id.ac.ui.cs.advprog.bookubehistory.model.Book;
 import id.ac.ui.cs.advprog.bookubehistory.model.PurchaseHistory;
 import id.ac.ui.cs.advprog.bookubehistory.service.PurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/history")
@@ -21,15 +18,6 @@ public class PurchaseHistoryController {
 
     @Autowired
     private PurchaseHistoryService purchaseHistoryService;
-
-//    @GetMapping("/")
-//    PurchaseHistory getUser(@AuthenticationPrincipal User user) {
-//        String username = user.getUsername();
-//        String password = user.getPassword();
-//        String email = user.getEmail();
-//        String role = user.getRole(); // ADMIN atau CUSTOME
-//        return new PurchaseHistory();
-//        }
 
     @PostMapping("/createPurchaseHistory")
     public ResponseEntity<?> createPurchaseHistory(@RequestBody PurchaseHistoryDTO purchaseDTO) {

@@ -1,4 +1,5 @@
 package id.ac.ui.cs.advprog.bookubehistory.service;
+
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDTO;
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDetailDTO;
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseItemDTO;
@@ -45,16 +46,10 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
         return purchaseHistoryRepository.save(history);
     }
 
-
     @Override
     public List<PurchaseHistory> getPurchaseHistoryByUser(UUID userId) {
         return purchaseHistoryRepository.findByUserId(userId);
     }
-
-//    @Override
-//    public List<PurchaseItem> getPurchaseItemsByHistoryId(UUID historyId) {
-//        return List.of();
-//    }
 
     @Override
     public PurchaseHistoryDetailDTO getPurchaseHistoryDetails(UUID historyId) {
@@ -75,6 +70,4 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
                 history.getTotalPrice(),
                 itemDTOs);
     }
-
-
 }
