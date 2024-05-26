@@ -1,4 +1,5 @@
 package id.ac.ui.cs.advprog.bookubehistory.controller;
+import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDetailDTO;
 import id.ac.ui.cs.advprog.bookubehistory.model.Book;
 import id.ac.ui.cs.advprog.bookubehistory.model.PurchaseItem;
 import id.ac.ui.cs.advprog.bookubehistory.model.User;
@@ -63,8 +64,8 @@ public class PurchaseHistoryController {
     }
 
     @GetMapping("/{userId}/{purchaseHistoryId}")
-    public ResponseEntity<List<PurchaseItem>> getPurchaseHistoryItem(@PathVariable UUID userId, @PathVariable UUID purchaseHistoryId) {
-        return ResponseEntity.ok(purchaseHistoryService.getPurchaseItemsByHistoryId(purchaseHistoryId));
+    public ResponseEntity<PurchaseHistoryDetailDTO> getPurchaseHistoryDetails(@PathVariable UUID userId, @PathVariable UUID purchaseHistoryId) {
+        PurchaseHistoryDetailDTO details = purchaseHistoryService.getPurchaseHistoryDetails(purchaseHistoryId);
+        return ResponseEntity.ok(details);
     }
-
 }

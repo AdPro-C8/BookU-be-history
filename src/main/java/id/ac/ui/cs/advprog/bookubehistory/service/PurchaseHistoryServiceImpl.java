@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.bookubehistory.service;
 import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDTO;
+import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseHistoryDetailDTO;
+import id.ac.ui.cs.advprog.bookubehistory.dto.PurchaseItemDTO;
 import id.ac.ui.cs.advprog.bookubehistory.model.Book;
 import id.ac.ui.cs.advprog.bookubehistory.model.PurchaseHistory;
 import id.ac.ui.cs.advprog.bookubehistory.model.PurchaseItem;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 @Service
 public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 
@@ -48,8 +51,30 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
         return purchaseHistoryRepository.findByUserId(userId);
     }
 
-    // Dapatkan semua items dari sebuah history
-    public List<PurchaseItem> getPurchaseItemsByHistoryId(UUID historyId) {
-        return purchaseItemRepository.findByPurchaseHistoryId(historyId);
+//    @Override
+//    public List<PurchaseItem> getPurchaseItemsByHistoryId(UUID historyId) {
+//        return List.of();
+//    }
+
+    @Override
+    public PurchaseHistoryDetailDTO getPurchaseHistoryDetails(UUID historyId) {
+        PurchaseHistory history = purchaseHistoryRepository.findById(historyId)
+                .orElseThrow(() -> new IllegalArgumentException("No purchase history found with ID: " + historyId));
+        List<PurchaseItem> items = purchaseItemRepository.findByPurchaseHistoryId(historyId);
+        List<PurchaseItemDTO> itemDTOs = items.stream()
+                .map(item -> new PurchaseItemDTO(
+                        item.getBookId(),
+                        item.getBookTitle(),
+                        item.getPrice(),
+                        item.getBookImageUrl()))
+                .collect(Collectors.toList());
+
+        return new PurchaseHistoryDetailDTO(
+                history.getId(),
+                history.getPurchaseDate(),
+                history.getTotalPrice(),
+                itemDTOs);
     }
+
+
 }
