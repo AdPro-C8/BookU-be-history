@@ -38,9 +38,11 @@ public class PurchaseHistoryController {
         String url = "http://localhost:7000/book/get-multiple";
         RestTemplate restTemplate = new RestTemplate();
 
+        Map<String, List<UUID>> body = Map.of("bookIds", bookIds);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<List<UUID>> entity = new HttpEntity<>(bookIds, headers);
+        HttpEntity<Map<String, List<UUID>>> entity = new HttpEntity<>(body, headers);
 
         ResponseEntity<Book[]> response = restTemplate.exchange(
                 url,
